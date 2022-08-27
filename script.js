@@ -8,6 +8,7 @@ const clearBtn = document.querySelector('.clear');
 let gridSize = range.value;
 output.textContent = `${gridSize}px`;
 
+range.addEventListener("input", () => output.textContent = `${range.value}px`);
 range.addEventListener("change", resizeGrid);
 clearBtn.addEventListener("click", clearGrid);
 

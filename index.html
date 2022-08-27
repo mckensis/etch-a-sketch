@@ -7,6 +7,12 @@
 
         <link href="style.css" rel="stylesheet" type="text/css">
         <script src="script.js" defer></script>
+
+        <!-- Lobster google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
     </head>
 
     <body>
@@ -14,7 +20,7 @@
             <h1>Etch A Sketch</h1>
             <div class="gridContainer"></div>
             <div class="rangeDiv">
-                <label for="range">Grid Size</label>
+                <label for="range">Grid</label>
                 <input type="range" id="range" min="1" max="100" value="16" step="1" list="ticks">
                 <datalist id="ticks">
                     <option value="0"></option>
@@ -33,5 +39,6 @@
             </div>
             <button class="clear">Clear</button>
         </div>
+        <footer>Made by: <a href="https://github.com/mckensis">aidan mckenzie</a></footer>
     </body>
 </html>
