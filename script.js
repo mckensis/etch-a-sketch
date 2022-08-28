@@ -21,22 +21,24 @@ function drawGrid() {
             pixel.setAttribute("id", `row: ${row} column: ${column}`);
             pixel.setAttribute("style", `height: ${(containerSize/gridSize)}px; width: ${(containerSize/gridSize)}px`);
             container.appendChild(pixel);
-            pixel.addEventListener("mouseover", colorGrid);
         }
     }
 };
 
-function colorGrid(e) {
-    /*const mousePos = e.target;
-    console.log(mousePos.id); */
+function colorGrid() {
 
-    let cell = e.target;
+    let isDown = false;
+    
+    if (container.addEventListener("mousedown", (e) => { return isDown = true}));
+    if (container.addEventListener("mouseup", (e) => { return isDown = false}));
 
-    /* stop the parent container from colouring in */
-    e.stopPropagation();
-
-    return cell.style.backgroundColor = getColor();
-};
+    if (container.addEventListener("mousemove", (e) => {
+        if(isDown) {
+            e.stopPropagation();
+            let cell = e.path[0];
+            cell.style.backgroundColor = getColor();
+        }}));
+    }
 
 function resizeGrid() {
 
@@ -66,3 +68,4 @@ function getColor() {
 }
 
 drawGrid();
+colorGrid();
