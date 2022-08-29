@@ -7,14 +7,15 @@ const clearBtn = document.querySelector('.clear');
 
 let gridSize = range.value;
 output.textContent = `${gridSize}px`;
-
-range.addEventListener("input", () => output.textContent = `${range.value}px`);
-range.addEventListener("change", resizeGrid);
-clearBtn.addEventListener("click", clearGrid);
-container.addEventListener("mousemove", colorGrid);
-container.addEventListener("touchstart", touchColorGrid);
-
 let isDown = false;
+
+function listeners() {
+    range.addEventListener("input", () => output.textContent = `${range.value}px`);
+    range.addEventListener("change", resizeGrid);
+    clearBtn.addEventListener("click", clearGrid);
+    container.addEventListener("mousemove", colorGrid);
+    container.addEventListener("touchstart", touchColorGrid);
+}
 
 function drawGrid() {
 
@@ -27,22 +28,8 @@ function drawGrid() {
             container.appendChild(pixel);
         }
     }
+    listeners();
 };
-
-function colorGrid(e) {
-
-    e.preventDefault();
-    if (container.addEventListener("mousedown", () => { return isDown = true}));
-    if (container.addEventListener("mouseup", () => { return isDown = false}));
-
-    if(isDown) {
-        e.preventDefault();
-        let cell = e.target;
-        let isDown = false;
-        e.stopPropagation();
-        cell.style.backgroundColor = getColor();
-    }
-}
 
 function resizeGrid() {
 
@@ -64,6 +51,21 @@ function clearGrid() {
 function getColor() {
     const color = document.querySelector("#colorwheel");
     return color.value;
+}
+
+function colorGrid(e) {
+
+    e.preventDefault();
+    if (container.addEventListener("mousedown", () => { return isDown = true}));
+    if (container.addEventListener("mouseup", () => { return isDown = false}));
+
+    if(isDown) {
+        e.preventDefault();
+        let cell = e.target;
+        let isDown = false;
+        e.stopPropagation();
+        cell.style.backgroundColor = getColor();
+    }
 }
 
 // Function to handle touchscreen colouring
@@ -112,4 +114,3 @@ function touchColorGrid(e) {
 }
 
 drawGrid();
-colorGrid();
