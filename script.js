@@ -74,7 +74,7 @@ function touchColorGrid(e) {
     // Colour the cell from the initial touch
     let cell = e.target;
     cell.style.backgroundColor = getColor();
-
+    e.stopPropagation();
     // Set mouse to not be clicked
     isDown = false;
 
