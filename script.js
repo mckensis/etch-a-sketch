@@ -9,14 +9,6 @@ let gridSize = range.value;
 output.textContent = `${gridSize}px`;
 let isDown = false;
 
-function listeners() {
-    range.addEventListener("input", () => output.textContent = `${range.value}px`);
-    range.addEventListener("change", resizeGrid);
-    clearBtn.addEventListener("click", clearGrid);
-    container.addEventListener("mousemove", colorGrid);
-    container.addEventListener("touchstart", touchColorGrid);
-}
-
 function drawGrid() {
 
     for (let row = 1; row <= gridSize; row++) {
@@ -30,6 +22,8 @@ function drawGrid() {
     }
     listeners();
 };
+
+drawGrid();
 
 function resizeGrid() {
 
@@ -116,4 +110,10 @@ function touchColorGrid(e) {
     //container.addEventListener("touchend", () => { return});
 }
 
-drawGrid();
+function listeners() {
+    range.addEventListener("input", () => output.textContent = `${range.value}px`);
+    range.addEventListener("change", resizeGrid);
+    clearBtn.addEventListener("click", clearGrid);
+    container.addEventListener("mousemove", colorGrid);
+    container.addEventListener("touchstart", touchColorGrid);
+}
