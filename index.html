@@ -6,7 +6,6 @@
         <meta charset="UTF-8">
 
         <link href="style.css" rel="stylesheet" type="text/css">
-        <script src="script.js" defer></script>
 
         <!-- Lobster google font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +17,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
-
+        <script src="script.js" defer></script>
     </head>
 
     <body>
@@ -31,19 +30,21 @@
                 <output><p class="output"></p></output>
             </div>
             <div class="bottomButtonDiv">
-            <input type="color" title="Pixel Color" id="colorwheel" name="colorwheel" value="#170F11" list="list">
-                <datalist id="list">
-                    <option value="#170F11" label="black">
-                    <option value="#FFFCE8" value="white">
-                    <option value="#C3423F" label="red">
-                    <option value="#4E937A" label="green">
-                    <option value="#253C78" label="blue">
-                    <option value="#FDE74C" label="yellow">
-                    <option value="#CA9CE1" label="purple">
-                    <option value="#F39C6B" label="orange">
-                    <option value="#BEEE62" label="lime">
-                    <option value="#E3B5A4" label="pink">
-                </datalist>
+                <div class="wrapper">
+                    <input type="color" title="Pixel Color" id="colorwheel" name="colorwheel" value="#170F11" list="list">
+                        <datalist id="list">
+                            <option value="#170F11" label="black">
+                            <option value="#FFFCE8" value="white">
+                            <option value="#C3423F" label="red">
+                            <option value="#4E937A" label="green">
+                            <option value="#253C78" label="blue">
+                            <option value="#FDE74C" label="yellow">
+                            <option value="#CA9CE1" label="purple">
+                            <option value="#F39C6B" label="orange">
+                            <option value="#BEEE62" label="lime">
+                            <option value="#E3B5A4" label="pink">
+                        </datalist>
+                </div>
                 <button class="clear" title="Clear grid">X</button>
             </div>
         </div>

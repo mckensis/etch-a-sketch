@@ -31,8 +31,7 @@ h1 {
     justify-content: center;
     align-items: center;
     width: 600px;
-    height: 750px;
-
+    height: 800px;
     border: 0.5rem solid #170F11;
     border-radius: 2.5rem;
     background-color: #E21216;
@@ -47,7 +46,7 @@ h1 {
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
-    background-color: #D1BEB0;
+    background-color: #F0EDEE;
     cursor: cell;
     border: none;
 }
@@ -56,8 +55,9 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    column-gap: 0rem;
-    width: 500px;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
     font-size: 1.7rem;
 }
 
@@ -71,9 +71,10 @@ output {
 }
 
 .bottomButtonDiv {
-    width: 500px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0rem 1rem;
     align-items: center;
 }
 
@@ -94,7 +95,7 @@ input[type=range] {
     cursor: col-resize;
     flex: 2;
     border-radius: 1rem;
-    background: lightgray;
+    background: #F0EDEE;
     border: 1px solid #170F11;
     padding: 0.25rem;
 }
@@ -107,13 +108,29 @@ input[type=range]::-webkit-slider-thumb {
     border: 1px solid #170F11;
 }
 
+.wrapper {
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    position: relative;
+    background: url(images/colours.png);
+    background-position: center;
+    object-fit: contain;
+    border: 1px solid #170F11;
+}
 /* color picker styling */
 #colorwheel {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 1rem;
+    width: 3rem;
+    height: 3rem;
     border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: transparent;
     cursor: pointer;
     margin-left: -0.5rem;
@@ -121,12 +138,17 @@ input[type=range]::-webkit-slider-thumb {
 }
 #colorwheel::-moz-color-swatch {
     border-radius: 50%;
-    border: 1rem solid transparent;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    border: 0.5rem solid transparent;
 }
 #colorwheel::-webkit-color-swatch {
     border-radius: 50%;
-    border: 1rem solid transparent;
-    margin-top: -0.5rem;
+    position: absolute;
+    top: 1.5rem;
+    left: 4rem;
+    border: 0.5em solid transparent;
 }
 
 /* Styles for my footer github link */
@@ -158,22 +180,18 @@ a[href="https://github.com/mckensis"] {
 
 /* mobile styles */
 @media only screen and (max-width: 450px) {
-    body {
-        width: 100vw;
-        height: 100vh;
-    }
 
     .outline {
-        width: 95vw;
-        height: 70vh;
+        width: 100vw;
+        height: 85vh;
         margin-bottom: 0rem;
         justify-content: space-evenly;
         padding: 0rem;
     }
 
     .gridContainer {
-        height: 23rem;
-        width: 23rem;
+        width: 350px;
+        height: 350px;
     }
 
     .rangeDiv {
@@ -182,5 +200,4 @@ a[href="https://github.com/mckensis"] {
         padding: 0rem 0.5rem;
         margin: 0;
     }
-
 }

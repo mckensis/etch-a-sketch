@@ -11,6 +11,10 @@ output.textContent = `${gridSize}px`;
 range.addEventListener("input", () => output.textContent = `${range.value}px`);
 range.addEventListener("change", resizeGrid);
 clearBtn.addEventListener("click", clearGrid);
+container.addEventListener("mousemove", colorGrid);
+container.addEventListener("touchstart", touchColorGrid);
+
+let isDown = false;
 
 function drawGrid() {
 
@@ -25,46 +29,86 @@ function drawGrid() {
     }
 };
 
-function colorGrid() {
+function colorGrid(e) {
 
-    let isDown = false;
-    
-    if (container.addEventListener("mousedown", (e) => { return isDown = true}));
-    if (container.addEventListener("mouseup", (e) => { return isDown = false}));
+    e.preventDefault();
+    if (container.addEventListener("mousedown", () => { return isDown = true}));
+    if (container.addEventListener("mouseup", () => { return isDown = false}));
 
-    if (container.addEventListener("mousemove", (e) => {
-        if(isDown) {
-            e.stopPropagation();
-            let cell = e.path[0];
-            cell.style.backgroundColor = getColor();
-        }}));
+    if(isDown) {
+        e.preventDefault();
+        let cell = e.target;
+        let isDown = false;
+        e.stopPropagation();
+        cell.style.backgroundColor = getColor();
     }
+}
 
 function resizeGrid() {
 
     while (container.firstChild) {
         container.removeChild(container.lastChild);
     }
-
     gridSize = this.value;
     output.textContent = `${gridSize}px`;
-
     drawGrid();
 };
 
 function clearGrid() {
-
     while (container.firstChild) {
         container.removeChild(container.lastChild);
     }
-
     drawGrid();
 };
 
 function getColor() {
-
     const color = document.querySelector("#colorwheel");
     return color.value;
+}
+
+// Function to handle touchscreen colouring
+function touchColorGrid(e) {
+
+    // Prevent scrolling page 
+    e.preventDefault();
+    // Colour the cell from the initial touch
+    let cell = e.target;
+    cell.style.backgroundColor = getColor();
+
+    // Set mouse to not be clicked
+    isDown = false;
+
+    // Get the boundaries of the container
+    let containerL = container.getBoundingClientRect().left;
+    let containerT = container.getBoundingClientRect().top;
+    let containerR = container.getBoundingClientRect().right;
+    let containerB = container.getBoundingClientRect().bottom;
+
+    // When finger moves over container, colour pixel
+    container.addEventListener("touchmove", (e) => {
+        const touchX = e.changedTouches[0].clientX;
+        const touchY = e.changedTouches[0].clientY;
+        
+        // Checking if the finger is within the left/right/top/bottom container coordinates
+        if (touchX > containerL && touchX < containerR) {
+            if (touchY > containerT && touchY < containerB) {
+                
+                // Set the cell to the div where the finger is
+                cell = document.elementFromPoint(touchX, touchY);
+                let parent = cell.parentNode;
+                
+                // If the cell is within container colour it,
+                // This is needed to provide room for error with finger touches
+                if (parent === container) {
+                    cell.style.backgroundColor = getColor();
+                    e.stopPropagation();
+                }
+            }
+        }
+    });
+
+    /* Don't think this is needed */
+    //container.addEventListener("touchend", () => { return});
 }
 
 drawGrid();
