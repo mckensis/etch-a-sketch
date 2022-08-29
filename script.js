@@ -56,6 +56,7 @@ function getColor() {
 function colorGrid(e) {
 
     e.preventDefault();
+
     if (container.addEventListener("mousedown", () => { return isDown = true}));
     if (container.addEventListener("mouseup", () => { return isDown = false}));
 
@@ -73,10 +74,10 @@ function touchColorGrid(e) {
 
     // Prevent scrolling page 
     e.preventDefault();
+    e.stopPropagation();
     // Colour the cell from the initial touch
     let cell = e.target;
     cell.style.backgroundColor = getColor();
-    e.stopPropagation();
     // Set mouse to not be clicked
     isDown = false;
 
@@ -88,6 +89,8 @@ function touchColorGrid(e) {
 
     // When finger moves over container, colour pixel
     container.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const touchX = e.changedTouches[0].clientX;
         const touchY = e.changedTouches[0].clientY;
         
